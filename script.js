@@ -15,7 +15,7 @@ const getComputerChoice = () => {
 
 const playRound = (humanChoice, computerChoice) => {
 	if (humanChoice === computerChoice) {
-		result.value = "You've chosen the same thing, play again!";
+		result.value = `You've both chose ${humanChoice}, play again!`;
 		return;
 	}
 	if (humanChoice === "rock") {
