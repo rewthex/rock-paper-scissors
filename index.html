@@ -6,6 +6,12 @@
 		<title>Rock Paper Scissors</title>
 		<script src="script.js" defer></script>
 		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div class="container">
@@ -15,20 +21,20 @@
 			<div class="scores">
 				<div class="player">
 					<label for="player">Player :</label>
-					<input id="player" type="number" />
+					<input id="player" type="number" disabled />
 				</div>
 				<div class="computer">
 					<label for="compuer">Computer: </label>
-					<input id="computer" type="number" />
+					<input id="computer" type="number" disabled />
 				</div>
 			</div>
 			<div class="round-result">
-				<input class="result" type="text" />
+				<input class="result" type="text" disabled />
 			</div>
 			<div class="choices">
-				<button id="rock"></button>
-				<button id="paper"></button>
-				<button id="scissors"></button>
+				<button id="rock">Rock</button>
+				<button id="paper">Paper</button>
+				<button id="scissors">Scissors</button>
 			</div>
 		</div>
 	</body>
