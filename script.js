@@ -1,65 +1,68 @@
-// const choices = ["rock", "paper", "scissors"];
+const choices = ["rock", "paper", "scissors"];
 
-// let humanScore = 0;
-// let computerScore = 0;
+const choiceButtons = document.querySelectorAll("button");
+const player = document.querySelector("#player");
+const computer = document.querySelector("#computer");
+const result = document.querySelector(".result");
 
-// const getComputerChoice = () => {
-// 	const randomIndex = Math.floor(Math.random() * 3);
-// 	return choices[randomIndex];
-// };
+let humanScore = 0;
+let computerScore = 0;
 
-// const getHumanChoice = () => {
-// 	const humanChoice = prompt("What do you choose?").toLowerCase();
-// 	if (choices.includes(humanChoice)) {
-// 		return humanChoice;
-// 	} else {
-// 		getHumanChoice();
-// 	}
-// };
+const getComputerChoice = () => {
+	const randomIndex = Math.floor(Math.random() * 3);
+	return choices[randomIndex];
+};
 
-// const playRound = (humanChoice, computerChoice) => {
-// 	if (humanChoice === computerChoice) {
-// 		console.log(`You've both chosen ${humanChoice}, play again!`);
-// 		return;
-// 	}
-// 	if (humanChoice === "rock") {
-// 		if (computerChoice === "paper") {
-// 			console.log("You lose, paper beats rock!");
-// 			computerScore++;
-// 		} else {
-// 			console.log("You win, rock beats scissors!");
-// 			humanScore++;
-// 		}
-// 	} else if (humanChoice === "scissors") {
-// 		if (computerChoice === "rock") {
-// 			console.log("You lose, rock beats scissors!");
-// 			computerScore++;
-// 		} else {
-// 			console.log("You win, scissors beats paper!");
-// 			humanScore++;
-// 		}
-// 	} else {
-// 		if (computerChoice === "scissors") {
-// 			console.log("You lose, scissors beats paper!");
-// 			computerScore++;
-// 		} else {
-// 			console.log("You win, paper beats rock!");
-// 			humanScore++;
-// 		}
-// 	}
-// };
+const playRound = (humanChoice, computerChoice) => {
+	if (humanChoice === computerChoice) {
+		result.value = "You've chosen the same thing, play again!";
+		return;
+	}
+	if (humanChoice === "rock") {
+		if (computerChoice === "paper") {
+			result.value = "You lose, paper beats rock!";
+			computerScore++;
+		} else {
+			result.value = "You win, rock beats scissors!";
+			humanScore++;
+		}
+	} else if (humanChoice === "scissors") {
+		if (computerChoice === "rock") {
+			result.value = "You lose, rock beats scissors!";
+			computerScore++;
+		} else {
+			result.value = "You win, scissors beats paper!";
+			humanScore++;
+		}
+	} else {
+		if (computerChoice === "scissors") {
+			result.value = "You lose, scissors beats paper!";
+			computerScore++;
+		} else {
+			result.value = "You win, paper beats rock!";
+			humanScore++;
+		}
+	}
+	player.value = humanScore;
+	computer.value = computerScore;
+};
 
-// const playGame = () => {
-// 	while (humanScore < 5 && computerScore < 5) {
-// 		const humanSelection = getHumanChoice();
-// 		const computerSelection = getComputerChoice();
-// 		playRound(humanSelection, computerSelection);
-// 	}
-//     if (humanScore === 5) {
-//         console.log("You've won! Congratulations!")
-//     } else {
-//         console.log("You've lost! Refresh to play again!")
-//     }
-// };
+const gameIsOver = () => {
+	return humanScore === 5 || computerScore === 5;
+};
 
-// playGame();
+const resetGame = () => {
+	const winner = humanScore === 5 ? "Player" : "Computer";
+	result.value = `The winner is ${winner}! Make another choice to play again.`;
+	humanScore = 0;
+	computerScore = 0;
+};
+
+choiceButtons.forEach((button) => {
+	button.addEventListener("click", () => {
+		playRound(button.id, getComputerChoice());
+		if (gameIsOver()) {
+			resetGame();
+		}
+	});
+});
