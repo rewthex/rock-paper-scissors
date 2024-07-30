@@ -53,7 +53,7 @@ const gameIsOver = () => {
 
 const resetGame = () => {
 	const winner = humanScore === 5 ? "Player" : "Computer";
-	result.value = `The winner is ${winner}! Make another choice to play again.`;
+	result.value = `${winner} wins! Make another choice to play again.`;
 	humanScore = 0;
 	computerScore = 0;
 };
